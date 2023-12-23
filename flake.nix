@@ -14,7 +14,7 @@
         inputs.treefmt-nix.flakeModule
         inputs.pre-commit-hooks-nix.flakeModule
       ];
-      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin" ];
+      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" "x86_64-darwin"];
       perSystem = { config, self', inputs', pkgs, system, ... }: {
         # Per-system attributes can be defined here. The self' and inputs'
         # module parameters provide easy access to attributes of the same
@@ -22,11 +22,6 @@
 
         # Equivalent to  inputs'.nixpkgs.legacyPackages.hello;
         treefmt.programs = {
-          cabal-fmt.enable = true;
-          ormolu = {
-            enable = true;
-            package = pkgs.haskellPackages.fourmolu;
-          };
         };
         treefmt.projectRootFile = "flake.nix";
         pre-commit.settings.hooks = {
@@ -35,7 +30,7 @@
         };
         packages.default = pkgs.prismlauncher.override {
           prismlauncher-unwrapped = pkgs.prismlauncher-unwrapped.overrideAttrs (prevAttrs: {
-            patches = prevAttrs.patches ++ [./cracked.patch];
+            patches = [./cracked.patch];
           });
         };
       };
