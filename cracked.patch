@@ -11,22 +11,3 @@ index f6fcfada2..3f39e6e38 100644
  
      bool hasProfile() const { return data.profileId().size() != 0; }
  
-diff --git a/launcher/ui/pages/global/AccountListPage.cpp b/launcher/ui/pages/global/AccountListPage.cpp
-index 041b8faff..90eb6becf 100644
---- a/launcher/ui/pages/global/AccountListPage.cpp
-+++ b/launcher/ui/pages/global/AccountListPage.cpp
-@@ -141,14 +141,6 @@ void AccountListPage::on_actionAddMicrosoft_triggered()
- 
- void AccountListPage::on_actionAddOffline_triggered()
- {
--    if (!m_accounts->anyAccountIsValid()) {
--        QMessageBox::warning(this, tr("Error"),
--                             tr("You must add a Microsoft account that owns Minecraft before you can add an offline account."
--                                "<br><br>"
--                                "If you have lost your account you can contact Microsoft for support."));
--        return;
--    }
--
-     MinecraftAccountPtr account =
-         OfflineLoginDialog::newAccount(this, tr("Please enter your desired username to add your offline account."));
- 

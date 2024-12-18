@@ -30,7 +30,7 @@
         };
         packages.default = pkgs.prismlauncher.override {
           prismlauncher-unwrapped = pkgs.prismlauncher-unwrapped.overrideAttrs (prevAttrs: {
-            patches = [./cracked.patch];
+            patches = [./cracked.patch ./accounts.patch];
           });
         };
       };
