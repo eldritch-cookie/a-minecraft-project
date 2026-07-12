@@ -28,17 +28,22 @@
           treefmt.enable = true;
           typos.enable = true;
         };
-        packages.default = pkgs.prismlauncher.override {
-          prismlauncher-unwrapped = pkgs.prismlauncher-unwrapped.overrideAttrs (prevAttrs: {
-            patches = [./cracked.patch];
-          });
-          jdks = with pkgs; [jdk8 jdk17 jdk21 jdk25];
+        packages = {
+          default = pkgs.prismlauncher.override {
+            prismlauncher-unwrapped = pkgs.prismlauncher-unwrapped.overrideAttrs (prevAttrs: {
+              patches = [./cracked.patch];
+            });
+            jdks = with pkgs; [jdk8 jdk17 jdk21 jdk25];
+          };
+          debug = pkgs.prismlauncher.override {
+            prismlauncher-unwrapped = pkgs.enableDebugging (pkgs.prismlauncher-unwrapped.overrideAttrs (prevAttrs: {
+              patches = [./cracked.patch];
+            }));
+            jdks = with pkgs; [jdk8 jdk17 jdk21 jdk25];
+          };
         };
       };
       flake = {
-        # The usual flake attributes can be defined here, including system-
-        # agnostic ones like nixosModule and system-enumerating ones, although
-        # those are more easily expressed in perSystem.
       };
-    };
+  };
 }
